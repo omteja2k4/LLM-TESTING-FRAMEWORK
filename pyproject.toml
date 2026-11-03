@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-quality-framework"
+version = "0.1.0"
+description = "Reproducible golden-dataset and AI quality checks with optional live Gemini and DeepEval evaluation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Omteja Kothmirkar"}]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-cov>=5.0"]
+llm = ["deepeval>=2.0"]
+
+[project.scripts]
+llm-qa = "ai_quality.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["live: requires a real Gemini key and may incur charges"]
